@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\login_controller;
-use App\Http\Controllers\register_controller;
+
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,8 +20,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [login_controller::class,'login']);
-Route::get('/register', [register_controller::class,'register']);
+// GET......................................................................................
+Route::get('/login', [UserController::class, 'login']);
+Route::get('/user/login', [UserController::class, 'login']);
+Route::get('/register', [UserController::class, 'register']);
+Route::get('/user/register', [UserController::class, 'register']);
 
-Route::post('/login', [login_controller::class,'user_login']);
-Route::post('/register', [register_controller::class,'user_register']);
+Route::get('/admin', [AdminController::class, 'admin']);
+Route::get('/admin/login', [AdminController::class, 'admin']);
+Route::get('/admin/register', [AdminController::class, 'admin_registration']);
+
+
+// POST........................................................................................
+Route::post('/user/login', [UserController::class, 'user_login']);
+Route::post('/user/register', [UserController::class, 'user_register']);
+
+Route::post('/admin/login', [AdminController::class, 'admin_login']);
+Route::post('/admin/register', [AdminController::class, 'admin_register']);
