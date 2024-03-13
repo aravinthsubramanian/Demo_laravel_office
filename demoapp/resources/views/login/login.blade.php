@@ -9,26 +9,31 @@
 </head>
 <body>
     <div class="content" style="width: 30%;margin-top:2cm;margin-left:35%">
+        @if(Session::has('error'))
+          <div class="alert alert-danger" role="alert">
+            {{Session::get('error')}}
+          </div>
+        @endif
+        
         <div class="heading" style="text-align: center">
             <h1>login</h1>
         </div>
-        @if($errors->any())
-        <div>
-            <ul class='alert alert-danger'>
-                @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-                @endforeach
-        </div>
-        @endif
+        
         <form action="{{url('login')}}" method="POST">
             @csrf
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input type="email" class="form-control" id="email" name='email'>
+              @error('email')
+                  <p class='text-danger'>{{$message}}</p>
+                @enderror
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" name='password'>
+              @error('password')
+                  <p class='text-danger'>{{$message}}</p>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

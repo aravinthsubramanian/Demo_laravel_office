@@ -11,6 +11,12 @@
 </head>
 <body>
     <div class="content" style="width: 30%;margin-top:2cm;margin-left:35%">
+        @if(Session::has('success'))
+          <div class="alert alert-success" role="alert">
+            {{Session::get('success')}}
+          </div>
+        @endif
+
         <div class="heading" style="text-align: center">
             <h1>register</h1>
         </div>
