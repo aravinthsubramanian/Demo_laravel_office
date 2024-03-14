@@ -10,9 +10,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <link href="{{asset('asset/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
+
+    <div class="headlog">
+        <div class="container-fluid" style="margin-top: 3mm;">
+            <a class="navbar-brand" href="#">
+                <img width="50" height="50" src="https://img.icons8.com/nolan/64/laravel.png" alt="laravel" />
+                <b>DemoApp</b>
+            </a>
+        </div>
+    </div>
     <div class="content" style="width: 30%;margin-top:2cm;margin-left:35%">
         @if (Session::has('error'))
             <div class="alert alert-danger" role="alert">
@@ -28,7 +38,7 @@
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name='email' value="{{ old('email') }}">
+                <input type="text" class="form-control" id="email" name='email' value="{{ old('email') }}">
                 @error('email')
                     <p class='text-danger'>{{ $message }}</p>
                 @enderror

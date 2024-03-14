@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -58,5 +59,13 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
         return back()->with("success", "Registerd Successfully...");
+    }
+
+    //Logout...........................................................................
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return view('user.userlogin');
     }
 }

@@ -28,34 +28,42 @@
             <div class="dropdown">
                 <button class="dropbtn">Hi! login</button>
                 <div class="dropdown-content">
-                    <a href="{{ route('userlogout') }}"><img width="35" height="35"
+                    <a href="{{ route('adminlogout') }}"><img width="35" height="35"
                             src="https://img.icons8.com/color-glass/48/exit.png" alt="exit" />Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <br><br><br><br>
-        <h1>Wellcome User0001.......</h1>
-    </div>
-    <br><br><br>
-
-
-    @if (Session::has('success'))
-        <div class="toast align-items-center position-absolute top-0 end-0 bg-success" role="alert">
-            <div class="toast-header">
-                <img width="30" height="30" src="https://img.icons8.com/color/48/checked--v1.png"
-                    alt="checked--v1" />
-                <strong class="mr-auto">{{ Session::get('success') }}</strong>
+    <div class="maincatbody">
+        <h3>Add Catagory</h3><br>
+        <form action="{{ url('/catagory/add') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="catagory_name" class="form-label">Catagory Name</label>
+                <input type="name" class="form-control" id="catagory_name" name="catagory_name" value="{{ old('name') }}">
+                @error('catagory_name')
+                    <p class='text-danger'>{{ $message }}</p>
+                @enderror
             </div>
-        </div>
-        <script>
-            $(document).ready(function() {
-                $('.toast').toast('show');
-            });
-        </script>
-    @endif
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="catagory_status" id="catagory_status"
+                    value="enable">
+                <label class="form-check-label" for="enable">Enabled</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="catagory_status" id="catagory_status"
+                    value="dissable">
+                <label class="form-check-label" for="disable">Dissabled</label>
+            </div>
+            @error('catagory_status')
+                <p class='text-danger'>{{ $message }}</p>
+            @enderror
+            <br><br>
+            <button type="submit" class="btn btn-primary">+Add</button>
+        </form>
+    </div>
 
 </body>
 
