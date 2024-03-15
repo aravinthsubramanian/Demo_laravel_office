@@ -24,7 +24,7 @@
 
     <div class="headcon">
         <div class="container-fluid" style="margin-top: 3mm;">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin') }}">
                 <img width="50" height="50" src="https://img.icons8.com/nolan/64/laravel.png" alt="laravel" />
                 <b>DemoApp</b>
             </a>
@@ -51,6 +51,7 @@
                 <label for="main_cat_name" class="form-label">Catagory Name</label>
                 <select class="form-control select2" aria-label="Default select example" id="catagory_name"
                     name="catagory_name">
+                    <option value="" selected></option>
                     @foreach ($catagory as $cata)
                         @if ($cata->catagory_status == 'enable')
                             <option value="{{ $cata->catagory }}">{{ $cata->catagory }}</option>

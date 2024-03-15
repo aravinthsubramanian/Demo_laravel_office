@@ -17,7 +17,7 @@
 
     <div class="headcon">
         <div class="container-fluid" style="margin-top: 3mm;">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin') }}">
                 <img width="50" height="50" src="https://img.icons8.com/nolan/64/laravel.png" alt="laravel" />
                 <b>DemoApp</b>
             </a>
@@ -55,30 +55,39 @@
                         <td>{{ $cat->catagory_status }}</td>
                         <td>{{ $cat->created_at }}</td>
                         <td>{{ $cat->updated_at }}</td>
-                        <td><a type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <td><a type="button" href="{{ url('editcat/' . $cat->id) }}"><img width="20" height="20"
+                                    src="https://img.icons8.com/avantgarde/100/edit.png" alt="edit" /></a></td>
+
+                        <td><a type="button" data-bs-toggle="modal" data-bs-target="#myModal"
+                                href="{{ url('delcat/' . $cat->id) }}">
                                 <img width="20" height="20"
                                     src="https://img.icons8.com/color/48/delete-forever.png" alt="delete-forever" />
                             </a></td>
                     </tr>
-
-                    <div class="modal" tabindex="-1" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <p>Are you want to Delete?</p>
-                                </div>
-                                <div class="modal-footer" id="myInput">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <a type="button" href="{{ url('delcat/' . $cat->id) }}"
-                                        class="btn btn-danger">Confirm</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
             </tbody>
         </table>
+    </div>
+
+
+    <div class="modal" tabindex="-1" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you want to Delete?</p>
+                </div>
+                <div class="modal-footer" id="myInput">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                    <form action="{{ url('delcat/' . $cat->id) }}" method="GET">
+                        <form action="" method="GET">
+                            {{-- @csrf
+                            @method('DELETE') --}}
+                            <button type="submit" class="btn btn-danger deletebtn">Delete</button>
+                        </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>

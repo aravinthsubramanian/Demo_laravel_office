@@ -17,7 +17,7 @@
 
     <div class="headcon">
         <div class="container-fluid" style="margin-top: 3mm;">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin') }}">
                 <img width="50" height="50" src="https://img.icons8.com/nolan/64/laravel.png" alt="laravel" />
                 <b>DemoApp</b>
             </a>
@@ -57,7 +57,8 @@
                         <td>{{ $subcat->subcatagory_status }}</td>
                         <td>{{ $subcat->created_at }}</td>
                         <td>{{ $subcat->updated_at }}</td>
-
+                        <td><a type="button" href="{{ url('editsubcat/' . $subcat->id) }}"><img width="20" height="20"
+                            src="https://img.icons8.com/avantgarde/100/edit.png" alt="edit" /></a></td>
                         <td><a type="button" data-bs-toggle="modal" data-bs-target="#myModal">
                                 <img width="20" height="20"
                                     src="https://img.icons8.com/color/48/delete-forever.png" alt="delete-forever" />

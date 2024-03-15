@@ -19,6 +19,11 @@ class AdminController extends Controller
         return view('admin.adminlogin');
     }
 
+    public function admin_home()
+    {
+        return view('admin.adminhome');
+    }
+
     public function admin_login(Request $request)
     {
         $request->validate([

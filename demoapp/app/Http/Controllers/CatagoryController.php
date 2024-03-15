@@ -21,6 +21,20 @@ class CatagoryController extends Controller
         return view('catagory.addsubcatagory', compact('catagory'));
     }
 
+    public function editcatagory($id)
+    {
+        $catagory = MainCatagory::find($id);
+        // dd($catagory);
+        return view('catagory.editcatagory',compact('catagory'));
+    }
+
+    public function editsubcatagory($id)
+    {
+        $catagory = MainCatagory::all();
+        $subcatagory = SubCatagory::find($id);
+        return view('catagory.editsubcatagory', compact('catagory','subcatagory'));
+    }
+
     public function showcatagory()
     {
         $catagory = MainCatagory::all();
@@ -63,25 +77,49 @@ class CatagoryController extends Controller
         return back()->with("success", "Registerd Successfully...");
     }
 
-
-
     public function delete_catagory($id)
     {
         $record = MainCatagory::find($id); // Replace $id with the ID of the record you want to delete
-        // dd($id);
-        if ($record) {
-            // Delete the record
-            $record->delete();
-        }
-        return back()->with("success", "deleted Successfully...");
+        dd($id);
+        // if ($record) {
+        //     // Delete the record
+        //     $record->delete();
+        // }
+        // return back()->with("success", "deleted Successfully...");
     }
     public function delete_subcatagory($id)
     {
-        $record = SubCatagory::find($id); // Replace $id with the ID of the record you want to delete
-        if ($record) {
-            // Delete the record
-            $record->delete();
-        }
-        return back()->with("success", "deleted Successfully...");
+        $record = SubCatagory::find($id);
+        dd($id);
+        // if ($record) {
+        //     // Delete the record
+        //     $record->delete();
+        // }
+        // return back()->with("success", "deleted Successfully...");
     }
+
+    public function updatecatagory(Request $request, $id)
+    {
+        $record = MainCatagory::find($id);
+        // dd($id);
+        if ($record) {
+            $record->catagory = $request->catagory_name;
+            $record->catagory_status = $request->catagory_status;
+            $record->update();
+        }
+        return back()->with("success", "updated Successfully...");
+    }
+    public function updatesubcatagory(Request $request, $id)
+    {
+        $record = SubCatagory::find($id);
+        // dd($request);
+        if ($record) {
+            $record->catagory = $request->catagory_name;
+            $record->subcatagory = $request->subcatagory_name;
+            $record->subcatagory_status = $request->subcatagory_status;
+            $record->update();
+        }
+        return back()->with("success", "updated Successfully...");
+    }
+
 }

@@ -30,7 +30,7 @@
 
     <div class="headlog">
         <div class="container-fluid" style="margin-top: 3mm;">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin') }}">
                 <img width="50" height="50" src="https://img.icons8.com/nolan/64/laravel.png" alt="laravel" />
                 <b>DemoApp</b>
             </a>
